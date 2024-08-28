@@ -20,7 +20,11 @@ public class CreateCustomerServiceTest {
 
     @Test
     public void should_return_error_when_email_is_already_existed() {
-        Customer fakeCustomer = new Customer("Ha Tuan Anh", "C062", "tuananh1612.bn@gmail.com");
+        Customer fakeCustomer = Customer.builder()
+                .Name("Ha Tuan Anh")
+                .CustomerNumber("C062")
+                .Email("tuananh1612.bn@gmail.com").build();
+
         when(repository.getCustomerByEmail(fakeCustomer.Email)).thenReturn(fakeCustomer);
 
         String expected = "Email is already existed";
@@ -31,7 +35,10 @@ public class CreateCustomerServiceTest {
 
     @Test
     public void should_return_error_when_email_is_invalid() {
-        Customer fakeCustomer = new Customer("Ha Tuan Anh", "C062", "tuananh1612.bn@gmail.com");
+        Customer fakeCustomer = Customer.builder()
+                .Name("Ha Tuan Anh")
+                .CustomerNumber("C062")
+                .Email("tuananh1612.bn@gmail.com").build();
 
         fakeCustomer.setEmail("tuananh1612");
 
@@ -43,7 +50,11 @@ public class CreateCustomerServiceTest {
 
     @Test
     public void should_return_successful_message_when_successful_create() {
-        Customer fakeCustomer = new Customer("Ha Tuan Anh", "C062", "tuananh1612.bn@gmail.com");
+        Customer fakeCustomer = Customer.builder()
+                .Name("Ha Tuan Anh")
+                .CustomerNumber("C062")
+                .Email("tuananh1612.bn@gmail.com").build();
+
         when(repository.getCustomerByEmail(fakeCustomer.Email)).thenReturn(fakeCustomer);
         fakeCustomer.setEmail("edohajime2000@gmail.com");
         when(repository.createcustomer(fakeCustomer)).thenReturn(true);
